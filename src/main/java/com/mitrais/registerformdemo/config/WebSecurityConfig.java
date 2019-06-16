@@ -11,20 +11,15 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-					.antMatchers("/login").permitAll()
-					.antMatchers("/registration").permitAll()
-                    .antMatchers("/resources/**", "/").permitAll()
-//                    .anyRequest().authenticated()
-                 ;
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests().antMatchers("/login").permitAll().antMatchers("/registration").permitAll()
+				.antMatchers("/resources/**", "/").permitAll().anyRequest().authenticated();
+	}
 
 }
